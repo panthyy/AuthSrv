@@ -1,11 +1,8 @@
 var express = require("express");
-var router = express.Router();
+
+const router = express.Router();
 
 // checks the health of the server
-router.get("/", function (req, res) {
-  res.json({
-    status: "OK",
-  });
-});
+router.get("/", async function (req, res) {});
 
-module.exports = router;
+module.exports = { healthRouter: router };

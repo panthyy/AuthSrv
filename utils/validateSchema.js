@@ -1,9 +1,10 @@
 var Joi = require("joi");
 
 const ValidateSchema = (schema, data, res) => {
-  const { error, value } = Joi.validate(data, schema);
+  const { error, value } = schema.validate(data);
   if (error) {
-    res.status(400).send(error.details[0].message);
+    console.log(error.details[0].message);
+    res.status(422).json({ error: error.details[0].message });
     return false;
   } else {
     return true;
