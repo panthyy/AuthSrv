@@ -3,7 +3,7 @@ services:
   web:
     build: .
     ports:
-      - "3000:3000"
+      - "3000:3002"
     links:
       - db:db
     depends_on:
