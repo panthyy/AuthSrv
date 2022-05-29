@@ -5,7 +5,7 @@ var database = null;
 
 // get all tables
 const getTables = async () => {
-  const query = await client.query(
+  const query = await this.client.query(
     "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
   );
   return query.rows;
