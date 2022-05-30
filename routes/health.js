@@ -1,16 +1,21 @@
 var express = require("express");
-const getDb = require("../utils/database");
 
 const router = express.Router();
 
 // checks the health of the server
-router.get("/", async function (req, res) {
-  const db = await getDb();
-  const result = await db.health();
+router.get("/");
+
+const getHealth = (database) => async (req, res) => {
+  const result = await database.health();
   res.json({
     status: true,
     dbStatus: result,
   });
-});
+};
 
-module.exports = { healthRouter: router };
+const init = (database) => {
+  router.get("/", getHealth(database));
+  return router;
+};
+
+module.exports = { healthRouter: init };
